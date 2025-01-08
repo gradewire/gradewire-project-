@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/admin-style.css'%}">
+
+</head>
+<body>
+    <div class="menu-toggle" onclick="toggleSidebar()">☰ Menu</div>
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <a href="{% url 'adminHome' %}" onclick="showSection('home')">Home</a>
+        <a href="{% url 'ManageStudent' %}"  >Manage Students</a>
+        <a href="{% url 'adminMgTeacher' %}" >Manage Teachers</a>
+        <a href="{% url 'adminMgCourse' %}"  onclick="showSection('manage-courses')">Manage Courses</a>
+        <a href="#" class="logout">Logout</a>
+    </div>
+
+    <div class="content">
+        <div id="manage-students" class="section active">
+            <h2>Manage Students</h2>
+            <div class="form-container">
+                <input type="text" id="searchStudent" placeholder="Search Student">
+                <button onclick="searchStudent()">Search</button>
+                <input type="text" id="studentName" placeholder="Student Name">
+                <input type="text" id="studentClass" placeholder="Student Class">
+                <button onclick="addStudent()">Add Student</button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th>Department</th>
+                            <th>Register id</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Parent</th>
+                            <th>Parent no</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                        {% for s in student %}
+                        <tr>
+                            <td>{{s.name}}</td>
+                            <td>{{s.Class}}</td>
+                            <td>{{s.department}}</td>
+                            <td>{{s.register_id}}</td>
+                            <td>{{s.mobile}}</td>
+                            <td>{{s.email}}</td>
+                            <td>{{s.parent}}</td>
+                            <td>{{s.parent_no}}</td>
+                            <td>{{s.password}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+        
+
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'assets/js/admin-side.js' %}"></script>
+</body>
+</html>

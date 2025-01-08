@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/admin-style.css'%}">
+
+</head>
+<body>
+    <div class="menu-toggle" onclick="toggleSidebar()">☰ Menu</div>
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <a href="{% url 'adminHome' %}" onclick="showSection('home')">Home</a>
+        <a href="{% url 'adminMgStudent' %}"  >Manage Students</a>
+        <a href="{% url 'adminMgTeacher' %}"  >Manage Teachers</a>
+        <a href="{% url 'adminMgCourse' %}"  onclick="showSection('manage-courses')">Manage Courses</a>
+        <a href="#" class="logout">Logout</a>
+    </div>
+
+    <div class="content">
+        <div id="manage-courses" class="section active">
+            <h2>Manage Courses</h2>
+            <div class="form-container">
+                <input type="text" id="courseName" placeholder="Course Name">
+                <input type="text" id="courseDescription" placeholder="Course Description">
+                <button onclick="addCourse()">Add Course</button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Course Name</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="courseTableBody">
+                        <!-- Course rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'assets/js/admin-side.js' %}"></script>
+</body>
+</html>
